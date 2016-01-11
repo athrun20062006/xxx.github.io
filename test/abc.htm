@@ -1,0 +1,497 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+		<meta property="og:image:width" content="200" />
+		<meta property="og:image:height" content="200" />
+		<meta property="og:url" content="http://{$_SERVER[HTTP_HOST]}{$_SERVER[REQUEST_URI]}"/>
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="SeeWide"/>
+		<meta property="og:title" content="{$fb_title}" />
+		<meta property="og:image" content="{$fb_image}" />
+		<meta property="og:description" content="{$fb_content}" />
+        <title>{$page_title} {$_SCONFIG[sitename]}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="viewport" content="width=device-width,target-densitydpi=low-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <script async src="template/default/js/jquery_1102m.js"></script>
+        <script async charset="utf-8" src="/js/resizeThumbs.js"></script>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<link type="text/css" rel="stylesheet" href="template/default/css/style8.css">
+    </head>
+	<style type="text/css">
+.page
+{
+	background:none repeat scroll 0% 0%;
+	margin:0px auto;
+	min-height:480px;
+	width:100%;
+}
+.searchActive
+{
+	color:#FFFFFF;
+	background-color:#2A6182;
+}
+.searchThrow
+{
+	color:#2A6182;
+}
+.menuIcons
+{
+	vertical-align:middle;
+	width:20px;
+}
+.userMenuIcon
+{
+	position:absolute;
+	left:14px;
+	top:9px;
+	width:26px;
+	height:26px;
+}
+.headIcon
+{
+	background:url(/image/mobile/header.png) no-repeat;
+}
+#user_box
+{
+	background-color:#E8E8E8;
+	position:absolute;
+	z-index:1113;
+	top:0px;
+	right:0px;
+	width:80%;
+	height:100%;
+	display:none;
+	color:#02456A;
+	box-shadow:0 0 9px #202020;
+}
+#user_box a
+{
+	color:#02456A;
+	font-size:18px;
+}
+#user_box li
+{
+	position:relative;
+	background-color:#FFFFFF;
+	border-bottom:1px solid #D3D3D3;
+	padding:10px 0 10px 50px;
+	font-size:16px;
+	line-height:24px;
+}
+	</style>
+    <body style="width:100%; height:100%; font-size:12px; line-height:150%; color:#666666; overflow-y:scroll; font-family:'微?雅黑', Gadget,'Arial Black', sans-serif;">
+		<div id="blur" style="position:fixed; top:80px; width:100%; height:90%; background:#FFFFFF; display:none; z-index:2000; overflow-y:scroll;"></div>
+        <a id="top" name="top"></a>
+        <div id="user_box">
+            <ul>
+                <!--{if $_SGLOBAL['supe_uid'] > 0}-->
+                <li style="padding-left:10px;">
+					<a href="index.php?act=logout" style="position:absolute; right:25px; bottom:10px; padding:5px 10px; border:1px solid #C0C0C0; border-radius:4px; background-color:#FFFFFF; color:#8B8C8C; background:linear-gradient(#FFFFFF,#F0F0FF);">登出</a>
+					<table style="border-spacing:0;" onclick="location.href='index.php?act=space&id={$_SGLOBAL[supe_uid]}'">
+						<tr>
+							<td><img onerror="this.src='/ucenter/images/noavatar_small.gif';" src="{$selfie}"></td>
+							<td style="padding-left:5px;">{$_SGLOBAL[member][username]}</td>
+						</tr>
+					</table>
+                </li>
+				<div class="bbx1" style="padding:3px 0px 3px 10px; border-color:#D3D3D3; color:#8B8C8C;">個人頁面</div>
+				<li onclick="location.href='index.php?act=notice'">
+					<div class="headIcon userMenuIcon" style="background-position:-110px -26px;"></div>個人訊息{if $alertage}<p style="background:#2D6EB7; border-radius:3px; text-align:center; font-size:12px; line-height:16px; width:28px; height:16px; position:absolute; top:14px; right:5px; color:#FFFFFF">{$alertage}</p>{/if}
+				</li>
+				<li onclick="location.href='index.php?act=myarticle'"><div class="headIcon userMenuIcon" style="background-position:0 -85px;"></div>我的攻略</li>
+				<li onclick="location.href='index.php?act=article_add&placeid={$placeinfo[placeid]}'"><div class="headIcon userMenuIcon" style="background-position:-40px -97px;"></div>寫攻略</li>
+                <li onclick="location.href='index.php?act=collect&uid={$_SGLOBAL[supe_uid]}'"><div class="headIcon userMenuIcon" style="background-position:-136px -26px;"></div>藏寶箱</li>
+                <li onclick="location.href='index.php?act=jbprice'"><div class="headIcon userMenuIcon" style="background-position:-136px -52px;"></div>旅費兌換</li>
+                <!--{else}-->
+                <li style="padding-left:10px;">
+                    <div class="right_user_avatar fl" style="margin-right:5px;" onclick="location.href='index.php?act=login'">
+						<img src="/ucenter/images/noavatar_small.gif">
+					</div>
+                    <div class="fl">
+						<a href='index.php?act=login'>登入</a><br/>
+						<a href='index.php?act=register' style="color:#8B8C8C">我想註冊成為探險家</a>
+					</div>
+                    <div class="clear"></div>
+				</li>
+                <!--{/if}-->
+				<div class="bbx1" style="padding:3px 0px 3px 10px; color:#8B8C8C;">SeeWide頁面</div>
+                <li onclick="location.href='index.php'"><div class="headIcon userMenuIcon" style="background-position:-110px -52px;"></div>特搜首頁</li>
+                <li onclick="location.href='index.php?act=search'"><div class="headIcon userMenuIcon" style="background-position:-84px 0px;"></div>探險好去處</li>
+                <li onclick="location.href='index.php?act=coupon'"><div class="headIcon userMenuIcon" style="background-position:-84px -26px;"></div>全港優惠</li>
+                <li onclick="location.href='index.php?act=article'"><div class="headIcon userMenuIcon" style="background-position:-84px -52px;"></div>探險攻略</li>
+				<div class="bbx1" style="padding:3px 0px 3px 10px; color:#8B8C8C;">有用連絡</div>
+                <li onclick="location.href='index.php?act=contact'" style="color:#8B8C8C"><div class="headIcon userMenuIcon" style="background-position:-110px 0px;"></div>聯絡我們</li>
+            </ul>
+			<p style="text-align:center; color:#C0C0C0; padding-top:5px;">&copy;2012-<!--{eval echo sgmdate('Y',$_SGLOBAL['timestamp']);}--> SeeWide.com<br>版權所有，不得轉載</p>
+        </div>
+	<div id="bottomHot" style="position:fixed; background-color:#E8E8E8; width:100%; top:80px; z-index:1112; padding-bottom:4px; display:none;">
+		<div class="place_price_list" style="padding-left:13px; background-color:#E8E8E8;">熱門搜尋</div>
+		<table style="width:100%;">
+    <!--{loop $seraph $key $inte}-->
+			{if $key%3==0}<tr>{/if}
+				<td class="catLv1" style="background-color:#FFFFFF;" onclick="location.href='index.php?act=search&keywords={$inte}'">
+					{$inte}
+				</td>
+			{if $key%3==2}</tr>{/if}
+    <!--{/loop}-->
+		</table>
+    </div>
+	<div id="bottomLv1" style="position:fixed; width:100%; top:280px; z-index:1111; border-top:1px solid #C0C0C0; border-bottom:1px solid #C0C0C0; display:none;">
+		<div class="place_price_list" style="padding-left:13px;">除了這個分類我還想看</div>
+		<table style="border-spacing:0px; width:100%; background-color:#FFFFFF;">
+    <!--{loop $catLv1names $key $iten}-->
+			{if $key%3==0}<tr>{/if}
+				<td class="catLv1" onclick="location.href='index.php?act=search&category={$catLv1[$key]}'">
+					{$iten}
+				</td>
+			{if $key%3==2}</tr>{/if}
+    <!--{/loop}-->
+		</table>
+    </div>
+		{if in_array($act,$sharable)}
+		<div id="dps" class="br6 f20" style="position:fixed; display:none; z-index:1113; left:50%; width:300px; top:50%; height:300px; margin:-150px 0px 0px -150px; border:1px solid #2A6182; background-color:#FFFFFF; overflow:hidden; line-height:28px;">
+			<div id="notshare" class="headIcon userMenuIcon" style="left:auto; right:0px; background-position:-136px 0px;" onclick="notshare()"></div>
+			<div class="tac" style="background-color:#185588; color:#FFFFFF; line-height:40px;">我要分享到</div>
+			<table style="width:100%; border-spacing:0px; background-color:#FFFFFF; color:#185588;">
+				<tr onclick="location.href='whatsapp://send?text={$shaare.title}%0D%0Ahttp%3A%2F%2Fwww.seewide.com%2F{$shaare.link}';linkshare('WAshare');">
+					<td class="bbx1" style="text-align:right; width:40px; padding:5px;"><img style="min-width:40px;" src="http://w.sharethis.com/images/whatsapp_32.png"></td>
+					<td class="bbx1" style="text-align:left;">分享到 Whatsapp {if !in_array($act,array("index","search","article"))}<span id="rottsappCunt">({$shaare.WAshare})</span>{/if}</td>
+				</tr>
+				<tr onclick="window.open('http://line.naver.jp/R/msg/text/?{$shaare.title}%0D%0Ahttp%3A%2F%2Fwww.seewide.com%2F{$shaare.link}');linkshare('LINEshare');">
+					<td class="bbx1" style="text-align:right; padding:5px;"><div class="headIcon" style="width:40px; height:40px; background-position:0px -45px;"></div></td>
+					<td class="bbx1" style="text-align:left;">分享到 LINE {if !in_array($act,array("index","search","article"))}<span id="leinCunt">({$shaare.LINEshare})</span>{/if}</td>
+				</tr>
+				<tr onclick="window.open('http://www.facebook.com/share.php?u=http://www.seewide.com/{$shaare.link}');linkshare('FBshare');return fbs_click();">
+					<td class="bbx1" style="text-align:right; padding:5px;"><img style="min-width:40px;" src="http://w.sharethis.com/images/facebook_32.png" alt="facebook" /></td>
+					<td class="bbx1" style="text-align:left;">分享到 Facebook {if !in_array($act,array("index","search","article"))}<span id="failbookCunt">({$shaare.FBshare})</span>{/if}</td>
+				</tr>
+			</table>
+<script>var inputtype='{$act}';
+function notshare()
+{
+	jQuery("#black_bg").hide();
+	jQuery("#dps").hide();
+}
+function linkshare(strink){
+	jQuery.ajax({
+		type:"POST",
+		url:"index.php?act=share",
+		data:"type="+inputtype+"&placeid={$shaare.id}&ajaxrequest="+strink,
+		beforeSend:function(){
+		},
+		success:function(res, textStatus, errorThrown){
+		var shareCunts=JSON.parse(res);
+		jQuery("#rottsappCunt").html("("+shareCunts[0]+")");
+		jQuery("#leinCunt").html("("+shareCunts[1]+")");
+		jQuery("#failbookCunt").html("("+shareCunts[2]+")");
+		},
+		complete:function(){
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+		}
+	})
+}</script>
+		</div>
+		{/if}
+        <div class="page">
+            <div id="main_page" style="position:relative;">
+				<div id="black_bg" style="display:none; transform:translate(0px,0px); position:fixed; top:0px; left:0px; z-index:1112; filter:Alpha(opacity=25); opacity:0.25; background-color:#000000; width:100%; height:100%;" onclick="reztor()"></div>
+<script>
+function reztor()
+{
+	jQuery('#main_page').css('-webkit-transform','translate(0,0)');
+	jQuery('#black_bg').css('-webkit-transform','translate(0,0)');
+	jQuery(".search_item").css("background-color","#FFFFFF");
+	jQuery("#dps").hide();
+	jQuery("#black_bg").hide();
+	jQuery("#user_box").hide();
+	jQuery(".report_box").hide();
+	jQuery("#search_box").hide();
+	jQuery(".searchLv2panel").hide();
+	jQuery(".search_item_box").scrollTop(0);
+	jQuery(".searchLv2panel").scrollTop(0);
+	jQuery(".searchLv2panel").css("overflow-x","auto");
+	jQuery(".searchLv2panel").css("overflow-y","scroll");
+	jQuery(".searchLv3panel").hide();
+	jQuery("body").css("overflow-x","auto");
+	jQuery("body").css("overflow-y","scroll");
+	jQuery("body").css("position","static");
+}</script>
+		<div id="noBody" class="headIcon" style="position:fixed; top:85%; right:10px; z-index:2147483647; width:44px; height:44px; background-position:-40px 0px;" onclick="slide()"></div>
+<script>
+function slide()
+{
+	jQuery("html,body").animate({
+		scrollTop:0
+	},100);
+}</script>
+                <header class="body_header {if !in_array($act,array('search','coupon','article'))}bbx1{/if}" style="position:relative;">
+                    <div class="top">
+                        <div id="yopurself" class="headIcon" style="position:absolute; right:0px; top:9px; background-position:-72px -78px; width:33px; height:36px;" onclick="doctor()"></div>
+<script>
+function doctor()
+{
+	jQuery('#main_page').css('-webkit-transform','translate(-80%,0)');
+	jQuery("#dps").hide();
+	black_page();
+	jQuery('#black_bg').css('-webkit-transform','translate(0,0)');
+	jQuery("#black_bg").show();
+	jQuery("#user_box").show();
+}
+function black_page(f)
+{
+	var wh = getWH(f)
+	jQuery('#black_bg').css({'width':wh.w,'height':wh.h});
+	jQuery('#user_box').css({'height':wh.h});
+}
+var getWH = function (){
+	var d = document,doc = d[d.compatMode == "CSS1Compat"?'documentElement':'body'];
+	return function(f){
+		return {
+			w:doc[(f?'client':'scroll')+'Width'],
+			h:f?doc.clientHeight:Math.max(doc.clientHeight,doc.scrollHeight)
+		}
+	}
+}();</script>
+						{if $alertage}<p id="newMail" style="background:#FF0000; border-radius:10px; text-align:center;width:14px; height:15px;position:absolute; top:5px; right:5px; color: #FFFFFF">{$alertage}</p>{/if}
+                        {if in_array($act, $act_array)}
+						<div id="buggeroff" class="logo" style="margin:0px; position:absolute; left:0px; top:0px;">
+							<div onclick={if $pos1}"history.go(-1);"{else}"location.href='index.php?act=search';"{/if} class="headIcon" style="position:absolute; top:0px; left:0px; background-position:0px 0px; width:40px; height:45px;"></div>
+						</div>
+						{/if}
+							{if in_array($act,$sharable)}
+						<div id="linkdump" class="headIcon" style="position:absolute; right:35px; top:12px; background-position:-40px -73px; width:32px; height:24px;" onclick="doshare()"></div>
+<script>
+function doshare()
+{
+	jQuery("#black_bg").show();
+	jQuery('#black_bg').css('-webkit-transform','translate(0,80px)');
+	jQuery("#dps").show();
+}</script>
+							{/if}
+						{if $act=='search'||$act=='coupon'||$act=='article'}
+						<table id="selab" style="border-spacing:0px; position:absolute; top:10px; left:50%; margin-left:-80px; text-align:center;">
+							<tr>
+								<td class="{if $act=='search'}searchActive{else}searchThrow{/if}" style="font-size:16px; width:80px; border:1px solid #2A6182; padding:5px 0px 5px 0px; border-radius:8px 0px 0px 8px;" onclick="location.href='index.php?act=search'">好去處</td>
+								<td class="{if $act!='search'}searchActive{else}searchThrow{/if}" style="font-size:16px; width:80px; border:1px solid #2A6182; padding:5px 0px 5px 0px; border-radius:0px 8px 8px 0px;" onclick="location.href='index.php?act={if $act=='search'}coupon{else}{$act}{/if}'">{if $act=='article'}攻略{else}優惠{/if}</td>
+							</tr>
+						</table>
+						{elseif $act=='article_add'}
+						<div class="f18 tac" style="color:#2A6182; padding-top:15px;">
+							正在{if empty($placeinfo)}寫Blog{else}發表好去處攻略{/if}
+						</div>
+						{elseif $act=='register'}
+						<div class="f18 tac" style="color:#2A6182; padding-top:15px;">
+							註冊SeeWide探險家帳戶
+						</div>
+						{elseif $act=='login'}
+						<div class="f18 tac" style="color:#2A6182; padding-top:15px;">
+							SeeWide探險家登入
+						</div>
+						{elseif $act=='collect'}
+						<div class="f18 tac" style="color:#2A6182; padding-top:15px;">
+							藏寶箱
+						</div>
+						{elseif $act=='index'}
+						<div class="f18 tac" style="color:#2A6182; padding-top:10px; line-height:30px; font-weight:bold;">
+							<div class="headIcon" style="position:absolute; top:10px; left:50%; margin-left:-75px; background-position:-40px -44px; width:35px; height:29px;"></div>
+							SeeWide
+						</div>
+						{/if}
+						{if $act!='coupon'&&$act!='article'&&$act!='place_article'&&$act!='myarticle'&&$act!='collect'&&$act!='login'&&$act!='register'}
+						{if $act!='index'}
+						<div id="bb" style="position:absolute; width:100%; height:400px; top:80px; background:#E8E8E8; z-index:1100; display:none;" onclick="gulp()"></div>
+						<div class="headIcon" id="sea_ico" style="background-position:-110px -78px; width:30px; height:30px; position:absolute; top:10px; right:70px;" onclick="subbut()"></div>
+						{/if}
+						
+						<div class="search" style="margin:0px; height:100%; background-color:#FFFFFF">
+							{if $act=='place'}
+											
+							<p class="tit1" style="color:#000000;font-size:18px;margin:auto;text-align:center;position:relative;top:12px;width:30%">好去處詳情</p>
+							{/if}
+							<div id="revert" style="font-size:14px; color:#FF8000; display:none; position:absolute; top:14px; right:10px;" onclick="gulp()">取消</div>
+							
+							<div class="search_input" id="sss" style="display:none;float:none; width:100%;">
+								<form id="form1" autocomplete="off" action="index.php" method="get" style="height:20px;">
+									
+									<input type="hidden" value="search" name="act"/>
+									<input type="hidden" value="{$filter[placeaddress]}" id="yplaceaddress"/>
+									<input class="search_input" style="display:none;margin:0px 0px 0px 30px; padding:0 25px; background-position:-110px -78px; width:48%; border-radius:16px; border-color:#C6C6C6; background-color:#EFEFEF; color:#000000;" id="keywords" name="keywords" type_value="{$filter[keywords]}" value="{$filter[keywords]}" type="text" placeholder="搜尋香港好去處/商店" onfocus="this.style.border=#0000FF;"oninput="mohu()">
+									<input class="search_input" style="padding-left:10px; border-radius:16px; border-color:#C6C6C6; background-color:#EFEFEF; color:#000000; width:75%; display:none;" type_value="{$filter[placeaddress]}" value="{$filter[placeaddress]}" id="placeaddress" name="placeaddress" type="text" placeholder="地區、位置輸入"/>
+									<input type="submit" id="searchs" class="headIcon" value="" type_value=" " style="display:none; background-position:-110px -78px; position:absolute; width:20px; height:35px; top:0px; left:74.5%;"/>
+									<input type="submit" id="hcraes" class="headIcon" value="" type_value=" " style="display:none; background-position:-110px -78px; position:absolute; width:30px; height:35px; top:35px; left:74.5%; border:0px;"/>
+									<p id="paddress" style="height:68px; line-height:68px; width:40px; position:absolute; margin-top:-16px; font-size:14px; color:#C0C0C0; text-align:center;">{$filter[placeaddress]}</p>
+									<span id="keyword" style="font-size: 14px;visibility:hidden;">{$filter[keywords]}</span>
+								</form>
+							</div>
+						</div>
+<script type="text/javascript">
+var keyword=document.getElementById("keyword");
+var Width;
+
+if(keyword.innerHTML!="")
+{
+	Width=40+parseInt(keyword.offsetWidth)+"px";
+}
+else
+{
+	document.getElementById("paddress").style.display="none";
+}
+document.getElementById("paddress").style.marginLeft=Width;
+function subbut()
+{	
+	$(".tit1").hide();
+	$(".f18.tac").hide();
+	$(".search_item_box").hide();
+	$(".searchLv2panel").hide();
+	$(".searchLv3panel").hide();
+	$(".searchLv1").css("background-color","#E0E0E0");
+	$(".search_item .filterIcon").css("-webkit-transform","rotateX(0deg)");
+	$(".search_item .filterIcon").css("transform","rotateX(0deg)");
+	$(".search_item_box").scrollTop(0);
+	$(".searchLv2panel").scrollTop(0);
+	$(".searchLv2panel").css("overflow-x","auto");
+	$(".searchLv2panel").css("overflow-y","scroll");
+	$(".search_item").css("background-color","#FFFFFF");
+	$("#search_box").hide();
+	$("#black_bg").hide();
+	$("body").css("overflow-x","auto");
+	$("body").css("overflow-y","scroll");
+	$("body").css("position","static");
+	jQuery('#sss').show();
+	jQuery('#sea_ico').hide();
+	jQuery("#selab").hide();
+	jQuery("#placeaddress").show();
+	jQuery("#keywords").css("width","75%");
+	jQuery("#keywords").css("margin-left","0px");
+	jQuery("#keywords").removeClass("headIcon");
+	jQuery("#keywords").css("padding-left","10px");
+	jQuery("#black_bg").hide();
+	jQuery("#dps").hide();
+	jQuery('#yopurself').hide();
+	jQuery('#linkdump').hide();
+	jQuery('#buggeroff').hide();
+	jQuery('#newMail').hide();
+	jQuery('#revert').show();
+	jQuery('.body_main').children().hide();
+	jQuery('#bottomLv1').show();
+	jQuery('#bottomHot').show();
+	jQuery('.body_main').children('#bottomLv2').show();
+	jQuery("#placeaddress").val(jQuery("#paddress").html());
+	jQuery("#paddress").hide();
+	jQuery("#bb").show();
+	jQuery("#searchs").show();
+	jQuery("#hcraes").show();
+	jQuery(".mt10").css("margin-top","60px");
+	jQuery("#form1").css("height","80px");
+	jQuery(".top").css("height","80px");
+	jQuery("#keywords").show();
+}
+function gulp()
+{
+	$(".f18.tac").show();
+	$(".tit1").show();
+	jQuery("#keywords").css("width","48%");
+	jQuery("#keywords").css("margin-left","30px");
+	jQuery("#keywords").addClass("headIcon");
+	jQuery("#keywords").css("padding-left","25px");
+	jQuery("#blur").hide();
+	jQuery('#revert').hide();
+	jQuery('#buggeroff').show();
+	jQuery('#linkdump').show();
+	jQuery('#yopurself').show();
+	jQuery('#newMail').show();
+	jQuery("#searchs").hide();
+	jQuery("#hcraes").hide();
+	jQuery("#placeaddress").hide();
+	jQuery("#paddress").html(jQuery("#yplaceaddress").val());
+	jQuery("#keywords").val(jQuery("#keyword").html());
+	jQuery('.body_main').children().show();
+	jQuery('#bottomLv1').hide();
+	jQuery('#bottomHot').hide();
+	jQuery(".mt10").css("margin-top","10px");
+	jQuery("#form1").css("height","20px");
+	jQuery(".top").css("height","48px");
+	jQuery("#selab").show();
+	jQuery('#sea_ico').show();
+	jQuery("#keywords").hide();
+	jQuery('#sss').hide();
+	jQuery("#bb").hide();
+}
+function mohu()
+{
+	text=jQuery("#keywords").val();
+	if(text=="")
+	{
+		return;
+	}
+	muhu();
+	jQuery('#bottomLv1').show();
+	jQuery('.body_main').children('#bottomLv2').hide();
+}
+function muhu()
+{
+	jQuery.ajax({
+		type:"POST",
+		url:"index.php?act=muhu&ctype=place",
+		data:"text="+text,
+		dataType:"JSON",
+		beforeSend:function(){
+		},
+		success:function(res){
+			if(res["itemarray"] != "")
+			{
+				var muhuhtml="<ul class='ui-menu-item'>";
+				var plname="";
+				for(var i=0;i<res["itemarray"].length;i++)
+				{
+					plname=res["itemarray"][i]['placename'];
+					muhuhtml+="<li>"+plname+"<input type='hidden' value='"+res["itemarray"][i]['placename']+"'/></li>";
+				};
+				muhuhtml+="</ul>";
+				jQuery("#blur").show();
+				jQuery("#blur").html(muhuhtml);
+			}
+			else
+			{
+				jQuery("#blur").html("");
+			}
+		},
+		complete:function(){
+			jQuery("#blur ul li").click(function(){
+				jQuery(this).css("background","#EAEAEA");
+				jQuery("#keywords").val(jQuery(this).find("input").val());
+				jQuery("#form1").submit();
+			})
+		},
+		error:function(XMLHttpRequest,textStatus,errorThrown){
+		}
+	})
+}
+</script>
+<style type="text/css">
+#blur .ui-menu-item
+{
+	background-color:#FFFFFF;
+	height:300px;
+	border-bottom:1px dashed #DDDDDD;
+	padding:0 4px;
+	overflow-y:scroll;
+}
+#blur li
+{
+	display:block;
+	height:30px;
+	line-height:30px;
+    border-bottom:1px solid #C0C0C0;
+	background:#FFFFFF;
+	font-weight:bolder;
+	font-size:15px;
+}
+</style>
+						{/if}
+                    </div>
+                </header>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
